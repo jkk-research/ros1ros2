@@ -144,12 +144,12 @@ orientation_source can be gps / odom
 - odom: orientation counted from previous positions        
 z_coord_ref_switch can be zero / exact / zero_based / orig 
 - zero: the Z coordinate is always 0
-- exact: the Z coorindinate is always z_coord_exact_height param (must be set in this launch)
+- exact: the Z coorindinate is always z_coord_exact_height
 - zero_based: Z coordinate starts from 0 and relative
 - orig: the original Z provided by Duro / Piksi
 euler_based_orientation:
-- true: euler based, not enabled by default, please enable SPB message SBP_MSG_ORIENT_EULER 0x0221 decimal 545
-- false: quaternion based, not enabled by default, please enable SPB message SBP_MSG_ORIENT_QUAT 0x0220 decimal 544
+- true: euler based, not enabled by default
+- false: quaternion based, not enabled by default
 """
 def generate_launch_description():
     ld = LaunchDescription()
@@ -298,9 +298,9 @@ include_directories(
 link_directories("/usr/local/lib/")
 
 
-add_executable(duronode src/duro.cpp src/utm.cpp src/fake_orientation.cpp)
+add_executable(duronode src/duro.cpp src/utm.cpp 
+src/fake_orientation.cpp)
 target_link_libraries(duronode sbp ${catkin_LIBRARIES})
-
 
 
 
@@ -311,7 +311,6 @@ install(TARGETS duronode
 
 #set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 
-#set(CMAKE_C_FLAGS "-Wall -Wextra -Wno-strict-prototypes -Wno-unknown-warning-option -Werror -std=gnu99 ${CMAKE_C_FLAGS}")
 
 
 ```
@@ -354,8 +353,8 @@ set(ament_dependencies
 link_directories("/usr/local/lib/")
 include_directories("/usr/local/include/")
 
-add_executable(duro_node src/duro_node.cpp src/utm.cpp src/fake_orientation.cpp)
-
+add_executable(duro_node src/duro_node.cpp src/utm.cpp 
+   src/fake_orientation.cpp)
 ament_target_dependencies(duro_node ${ament_dependencies})
 target_link_libraries(duro_node sbp)
 
