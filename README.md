@@ -262,7 +262,7 @@ node->get_parameter("euler_based_orientation",
  
 <table><tr><th>ROS1</th><th>ROS2</th></tr><tr><td> 
  
-``` cpp
+``` cmake
 cmake_minimum_required(VERSION 2.8.3)
 project(duro_ros)
 
@@ -317,7 +317,7 @@ install(TARGETS duronode
  
 </td><td>
 
-``` cpp
+``` cmake
 cmake_minimum_required(VERSION 3.5)
 project(duro_gps_driver)
 
