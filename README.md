@@ -382,6 +382,36 @@ ament_package()
 
 
 
+## Python
 
+<table><tr><th>ROS1</th><th>ROS2</th></tr><tr><td> 
+ 
+ ``` python
+import rospy
+#
+from std_msgs.msg import String, Float32
+rospy.init_node("demo_node", anonymous=True)
+#
+stringPub = rospy.Publisher("demo_string", String, queue_size=10)
+floatPub = rospy.Publisher("demo_float", Float32, queue_size=10)
+hello_str = "hello world %s" % rospy.get_time()
+stringPub.publish(hello_str)
+```
+ 
+</td><td>
 
+``` python
+import rclpy
+from rclpy.node import Node
+from std_msgs.msg import String, Float32
+rclpy.init()
+node = Node("demo_node")
+stringPub = node.create_publisher(String, "demo_string", 10)
+floatPub = node.create_publisher(Float32, "demo_float", 10)
+hello_str = "hello world %s" % node.get_clock().now()
+stringPub.publish(hello_str)
+```
+</td></tr></table>
+
+<img src="etc/ros1ros2.svg"/>
 <a href="LICENSE"><img src="etc/cc0.svg" width=40% /></a>
